@@ -1,10 +1,14 @@
 import React from "react";
 import { ComponentProps } from "react";
 
-const CTAButton = ({ className, ...rest }: ComponentProps<"button">) => {
+const CTAButton = ({
+  className,
+  text,
+  ...rest
+}: ComponentProps<"button"> & { text: string }) => {
   return (
-    <button {...rest} className={`${className}`}>
-      Submit
+    <button {...rest} className={`border-3 ${className}`}>
+      {text}
     </button>
   );
 };
