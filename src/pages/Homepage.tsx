@@ -32,19 +32,23 @@ const Homepage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <h1>Enter a string ( e.g abdcfs, ajkbsdchas )</h1>
+    <div className="h-screen flex flex-col justify-center items-center space-y-4">
       <InputBox
         required
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      {error && <p className="text-red-500">Enter a non-empty value</p>}
+      {error && (
+        <p className="mt-1 text-s text-red-500 text-left">
+          * Enter a non-empty value
+        </p>
+      )}
+
       <CTAButton
         type="submit"
         onClick={handleSubmit}
-        text="Submit"
-        className="border-4"
+        text="Submit ➔"
+        className="text-xl"
       />
     </div>
   );

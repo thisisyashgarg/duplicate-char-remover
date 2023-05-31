@@ -7,11 +7,14 @@ import Success from "../components/Success";
 import { CharacterDataContext } from "../context/DataContext";
 import { getHexColorCode, hasUniqueCharactersInAGivenArray } from "../helper";
 
+import Confetti from "react-confetti";
+
 const AllCards = () => {
   const { arrayOfChar, originalString, setArrayOfChar } =
     useContext(CharacterDataContext);
   const [isSuccess, setIsSuccess] = useState(false);
   const modifiedString = arrayOfChar.join("");
+  const { width, height } = window.screen;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,11 +34,22 @@ const AllCards = () => {
   return arrayOfChar.length === 0 ? (
     <Error />
   ) : (
-    <>
-      <CTAButton text="Go Back to Homepage" onClick={handleBackButton} />
-      <h1>Original String : {originalString}</h1>
-      <h1>Modified String: {modifiedString}</h1>
-      <div className="flex flex-wrap">
+    <div className=" h-screen flex flex-col  items-center justify-center space-y-4 mx-6">
+      {isSuccess && <Confetti />}
+      {isSuccess ? (
+        <Success />
+      ) : (
+        <h1 className="text-xl text-center font-bold ">
+          Your goal is to remove all the duplicate characters from the deck of
+          cards
+        </h1>
+      )}
+
+      <p className="text-xl">
+        <span className="font-bold"> {originalString}</span> ➞ {modifiedString}
+      </p>
+
+      <div className="flex flex-wrap justify-center">
         {arrayOfChar.map((char, index) => {
           return (
             <Card
@@ -47,8 +61,12 @@ const AllCards = () => {
           );
         })}
       </div>
-      {isSuccess && <Success />}
-    </>
+      <CTAButton
+        text="&#8592; Homepage"
+        onClick={handleBackButton}
+        className="text-xl"
+      />
+    </div>
   );
 };
 

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { RouterProvider } from "react-router-dom";
-import CharacterDataContext from "./context/DataContext";
-import router from "./router/router";
 import DataContextProvider from "./context/DataContext";
+import router from "./router/router";
 
 const App = () => {
   return (

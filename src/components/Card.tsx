@@ -25,13 +25,28 @@ const Card = ({ char, index, className, ...rest }: CardProps) => {
   }
 
   return (
+    // <div
+    //   className={`flex flex-col  border-2 rounded-md m-2 w-24 h-24 items-center justify-center space-y-4 ${className}`}
+    //   {...rest}
+    // >
+    //   <h1 className="font-bold text-xl">{char}</h1>
+    //   {!(occurrenceMap.get(char) === 1) && (
+    //     <CTAButton text="x" onClick={handleDelete} />
+    //   )}
+    // </div>
     <div
-      className={`flex flex-col border-4 p-2 m-2 w-24 h-24 items-center justify-center ${className}`}
+      className={`relative flex flex-col border-2 rounded-md m-2 w-24 h-24 items-center justify-center space-y-4 ${className}`}
       {...rest}
     >
-      <h1>{char}</h1>
+      <h1 className="font-bold text-xl">{char}</h1>
       {!(occurrenceMap.get(char) === 1) && (
-        <CTAButton text="Delete" className="border-2" onClick={handleDelete} />
+        <div className="absolute top-0 right-0 -mr-3  ">
+          <CTAButton
+            text="x"
+            onClick={handleDelete}
+            className="text-white bg-grey-100 p-2 rounded-full shadow-md"
+          />
+        </div>
       )}
     </div>
   );
