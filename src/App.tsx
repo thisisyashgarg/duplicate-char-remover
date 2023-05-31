@@ -1,19 +1,14 @@
-import React from "react";
-import router from "./router/router";
+import React, { useState } from "react";
 import { RouterProvider } from "react-router-dom";
-import { useState } from "react";
 import CharacterDataContext from "./context/DataContext";
+import router from "./router/router";
+import DataContextProvider from "./context/DataContext";
 
 const App = () => {
-  const [arrayOfChar, setArrayOfChar] = useState<string[]>([]);
-  const [originalString, setOriginalString] = useState<string>("");
-
   return (
-    <CharacterDataContext.Provider
-      value={{ arrayOfChar, setArrayOfChar, originalString, setOriginalString }}
-    >
+    <DataContextProvider>
       <RouterProvider router={router} />
-    </CharacterDataContext.Provider>
+    </DataContextProvider>
   );
 };
 
