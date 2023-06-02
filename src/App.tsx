@@ -5,6 +5,7 @@ import router from "./router/router";
 
 const App = () => {
   return (
+    // Wrap the router with the data context provider
     <DataContextProvider>
       <RouterProvider router={router} />
     </DataContextProvider>

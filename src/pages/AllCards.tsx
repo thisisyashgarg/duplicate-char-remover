@@ -5,7 +5,7 @@ import CTAButton from "../components/CTAButton";
 import Error from "../components/Error";
 import Success from "../components/Success";
 import { CharacterDataContext } from "../context/DataContext";
-import { getHexColorCode, hasUniqueCharactersInAGivenArray } from "../helper";
+import { hasUniqueCharactersInAGivenArray } from "../helper";
 
 import Confetti from "react-confetti";
 
@@ -14,9 +14,9 @@ const AllCards = () => {
     useContext(CharacterDataContext);
   const [isSuccess, setIsSuccess] = useState(false);
   const modifiedString = arrayOfChar.join("");
-  const { width, height } = window.screen;
   const navigate = useNavigate();
 
+  // Checking if the user has successfully removed all the duplicate characters
   useEffect(() => {
     if (
       hasUniqueCharactersInAGivenArray(arrayOfChar) &&
@@ -32,10 +32,16 @@ const AllCards = () => {
   }
 
   return arrayOfChar.length === 0 ? (
+    // If the array of characters is empty, then redirect to the homepage
     <Error />
   ) : (
-    <div className=" h-screen flex flex-col  items-center justify-center space-y-4 mx-6">
+    <div className="h-screen flex flex-col items-center justify-center space-y-4 mx-6">
+      {/* // If the array of characters is not empty and the user has
+      successfully, removed all the duplicate characters, then display the
+      success message */}
       {isSuccess && <Confetti />}
+
+      {/* // If the array of characters is not empty, then display the cards */}
       {isSuccess ? (
         <Success />
       ) : (
@@ -44,19 +50,18 @@ const AllCards = () => {
           cards
         </h1>
       )}
-
       <p className="text-xl">
         <span className="font-bold"> {originalString}</span> ➞ {modifiedString}
       </p>
-
       <div className="flex flex-wrap justify-center">
+        {/* // Looping through the array of characters and displaying the cards */}
         {arrayOfChar.map((char, index) => {
           return (
             <Card
               key={`${index}${char}`}
               index={index}
               char={char}
-              className={`bg-[${getHexColorCode(char)}]`}
+              //   color={getHexColorCode(char)}
             />
           );
         })}
@@ -64,7 +69,7 @@ const AllCards = () => {
       <CTAButton
         text="&#8592; Homepage"
         onClick={handleBackButton}
-        className="text-xl"
+        className="text-xl rounded-md"
       />
     </div>
   );

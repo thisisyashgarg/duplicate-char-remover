@@ -4,6 +4,8 @@ import { ERROR_SVG } from "../constants";
 
 const Error = () => {
   const navigate = useNavigate();
+
+  // Navigating to homepage in case of error
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigate("/");

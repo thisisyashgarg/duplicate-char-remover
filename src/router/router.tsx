@@ -3,6 +3,7 @@ import Homepage from "../pages/Homepage";
 import { createBrowserRouter } from "react-router-dom";
 import AllCards from "../pages/AllCards";
 
+// Creating a browser router
 const router = createBrowserRouter([
   {
     path: "/",

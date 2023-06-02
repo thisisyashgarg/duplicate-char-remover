@@ -12,20 +12,26 @@ const Homepage = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
+  // Clearing the array of characters when the user navigates back to the homepage
   useEffect(() => {
     setArrayOfChar(() => []);
   }, []);
 
   function handleSubmit() {
+    // Checking if the user has entered a non-empty value
     if (inputValue.trim() === "") {
       setError(true);
       setArrayOfChar(() => []);
       return;
     }
     setError(false);
+
+    // Converting the string to an array of characters
     const convertedArray = convertStringToCharacterArray(
       inputValue.replace(/\s/g, "")
     );
+
+    // Storing the original string and the array of characters in the context
     setArrayOfChar((prev) => (prev = convertedArray));
     setOriginalString((prev) => (prev = inputValue));
     navigate("/cards");
@@ -38,6 +44,8 @@ const Homepage = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
+
+      {/* // Displaying the error message if the user has entered a empty value */}
       {error && (
         <p className="mt-1 text-s text-red-500 text-left">
           * Enter a non-empty value
@@ -47,8 +55,8 @@ const Homepage = () => {
       <CTAButton
         type="submit"
         onClick={handleSubmit}
-        text="Submit ➔"
-        className="text-xl"
+        text="Submit &#8594;"
+        className="text-xl rounded-md"
       />
     </div>
   );
