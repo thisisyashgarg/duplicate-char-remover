@@ -4,8 +4,8 @@ import {
   createOccurrenceMap,
   deleteAllElementsFromTheArrayExceptGivenIndex,
 } from "../helper";
-import { FaTimes } from "react-icons/fa";
-import clsx from "clsx";
+import { AiOutlineDelete } from "react-icons/ai";
+// import clsx from "clsx";
 
 type CardProps = {
   char: string;
@@ -27,10 +27,12 @@ const Card = ({ char, index, ...rest }: CardProps) => {
 
   return (
     <div
-      className={clsx(
+      className={
+        // clsx(
         `relative flex flex-col border-2 rounded-md m-2 w-24 h-24 items-center justify-center space-y-4 `
         // `bg-[${color}]`
-      )}
+        //   )
+      }
       {...rest}
     >
       <h1 className="font-bold text-xl ">{char}</h1>
@@ -40,7 +42,8 @@ const Card = ({ char, index, ...rest }: CardProps) => {
           className="delete-button border-2 rounded-full"
           onClick={handleDelete}
         >
-          <FaTimes className="delete-icon absolute text-gray-300 -top-3 -right-2 text-2xl bg-gray-400" />
+          <AiOutlineDelete className="delete-icon absolute text-red-400 -top-3 -right-2 text-2xl bg-white rounded-full" />
+          {/* <FaTimes className="delete-icon absolute text-red-500 -top-3 -right-2 text-3xl bg-white rounded-full" /> */}
         </button>
       )}
     </div>
